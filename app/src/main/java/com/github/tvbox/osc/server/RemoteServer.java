@@ -122,7 +122,7 @@ public class RemoteServer extends NanoHTTPD {
                         }
                     }
                 } else if (fileName.startsWith("/file/")) {
-                    try {
+                    /*try {
                         String f = fileName.substring(6);
                         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
                         String file = root + "/" + f;
@@ -138,7 +138,8 @@ public class RemoteServer extends NanoHTTPD {
                         }
                     } catch (Throwable th) {
                         return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.INTERNAL_ERROR, NanoHTTPD.MIME_PLAINTEXT, th.getMessage());
-                    }
+                    }*/
+                    return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, "");
                 } else if (fileName.equals("/dns-query")) {
                     String name = session.getParms().get("name");
                     byte[] rs = null;
@@ -179,7 +180,7 @@ public class RemoteServer extends NanoHTTPD {
                 try {
                     Map<String, String> params = session.getParms();
                     if (fileName.equals("/upload")) {
-                        String path = params.get("path");
+                        /*String path = params.get("path");
                         for (String k : files.keySet()) {
                             if (k.startsWith("files-")) {
                                 String fn = params.get(k);
@@ -199,10 +200,10 @@ public class RemoteServer extends NanoHTTPD {
                                 if (tmp.exists())
                                     tmp.delete();
                             }
-                        }
+                        }*/
                         return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, "OK");
                     } else if (fileName.equals("/newFolder")) {
-                        String path = params.get("path");
+                        /*String path = params.get("path");
                         String name = params.get("name");
                         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
                         File file = new File(root + "/" + path + "/" + name);
@@ -211,23 +212,23 @@ public class RemoteServer extends NanoHTTPD {
                             File flag = new File(root + "/" + path + "/" + name + "/.tvbox_folder");
                             if (!flag.exists())
                                 flag.createNewFile();
-                        }
+                        }*/
                         return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, "OK");
                     } else if (fileName.equals("/delFolder")) {
-                        String path = params.get("path");
+                        /*String path = params.get("path");
                         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
                         File file = new File(root + "/" + path);
                         if (file.exists()) {
                             FileUtils.recursiveDelete(file);
-                        }
+                        }*/
                         return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, "OK");
                     } else if (fileName.equals("/delFile")) {
-                        String path = params.get("path");
+                       /* String path = params.get("path");
                         String root = Environment.getExternalStorageDirectory().getAbsolutePath();
                         File file = new File(root + "/" + path);
                         if (file.exists()) {
                             file.delete();
-                        }
+                        }*/
                         return NanoHTTPD.newFixedLengthResponse(NanoHTTPD.Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, "OK");
                     }
                 } catch (Throwable th) {
